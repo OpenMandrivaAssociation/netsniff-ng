@@ -1,6 +1,6 @@
 %define name	netsniff-ng
 %define version 0.5.3
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -35,6 +35,10 @@ cd src
 rm -rf %{buildroot}
 install -d -m  755 %{buildroot}%{_sbindir}
 install -m 755 src/netsniff-ng %{buildroot}%{_sbindir}
+install -d -m  755 %{buildroot}%{_mandir}/man8
+install -m 644 src/doc/netsniff-ng.8 %{buildroot}%{_mandir}/man8
+install -d -m  755 %{buildroot}%{_sysconfdir}/netsniff-ng/rules
+install -m 644 src/rules/* %{buildroot}%{_sysconfdir}/netsniff-ng/rules
 
 %clean
 rm -rf %{buildroot}
@@ -43,4 +47,5 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS Changelog COPYING EXAMPLES README TODO VERSION
 %{_sbindir}/%{name}
-
+%{_mandir}/man8/netsniff-ng.8*
+%config(noreplace) %{_sysconfdir}/netsniff-ng/rules
