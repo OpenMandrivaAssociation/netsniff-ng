@@ -1,6 +1,6 @@
 %define name	netsniff-ng
-%define version 0.5.3
-%define release %mkrel 2
+%define version 0.5.4
+%define release %mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -23,7 +23,7 @@ throughput or creating network statistics of incoming packets on central
 network nodes like routers or firewalls. 
 
 %prep
-%setup -q -c
+%setup -q
 cd src
 make clean
 
@@ -45,7 +45,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS Changelog COPYING EXAMPLES README TODO VERSION
+%doc AUTHORS Changelog COPYING README TODO VERSION
 %{_sbindir}/%{name}
 %{_mandir}/man8/netsniff-ng.8*
 %config(noreplace) %{_sysconfdir}/netsniff-ng/rules
