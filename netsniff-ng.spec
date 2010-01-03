@@ -1,5 +1,5 @@
 %define name	netsniff-ng
-%define version 0.5.4
+%define version 0.5.4.1
 %define release %mkrel 1
 
 Name:		%{name}
@@ -23,7 +23,7 @@ throughput or creating network statistics of incoming packets on central
 network nodes like routers or firewalls. 
 
 %prep
-%setup -q
+%setup -q -n %{name}_%{version}
 cd src
 make clean
 
