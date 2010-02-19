@@ -1,5 +1,5 @@
 %define name	netsniff-ng
-%define version 0.5.4.1
+%define version 0.5.4.2
 %define release %mkrel 1
 
 Name:		%{name}
