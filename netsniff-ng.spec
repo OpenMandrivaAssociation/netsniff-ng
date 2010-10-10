@@ -1,5 +1,5 @@
 %define name	netsniff-ng
-%define version 0.5.4.2
+%define version 0.5.5.0
 %define release %mkrel 1
 
 Name:		%{name}
@@ -8,8 +8,8 @@ Release:	%{release}
 Summary:	A high performance network sniffer for packet inspection
 License:	GPL
 Group:		Monitoring
-URL:		http://code.google.com/p/netsniff-ng/
-Source:     http://netsniff-ng.googlecode.com/files/%{name}-%{version}.tar.gz
+URL:		http://netsniff-ng.org/
+Source:     http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -23,7 +23,7 @@ throughput or creating network statistics of incoming packets on central
 network nodes like routers or firewalls. 
 
 %prep
-%setup -q -n %{name}_%{version}
+%setup -q -n %{name}
 cd src
 make clean
 
@@ -36,7 +36,7 @@ rm -rf %{buildroot}
 install -d -m  755 %{buildroot}%{_sbindir}
 install -m 755 src/netsniff-ng %{buildroot}%{_sbindir}
 install -d -m  755 %{buildroot}%{_mandir}/man8
-install -m 644 src/doc/netsniff-ng.8 %{buildroot}%{_mandir}/man8
+install -m 644 netsniff-ng.8 %{buildroot}%{_mandir}/man8
 install -d -m  755 %{buildroot}%{_sysconfdir}/netsniff-ng/rules
 install -m 644 src/rules/* %{buildroot}%{_sysconfdir}/netsniff-ng/rules
 
@@ -45,7 +45,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS Changelog COPYING README TODO VERSION
+%doc AUTHORS CHANGELOG CODING COPYING CREDITS HACKING README TODO VERSION
 %{_sbindir}/%{name}
 %{_mandir}/man8/netsniff-ng.8*
 %config(noreplace) %{_sysconfdir}/netsniff-ng/rules
