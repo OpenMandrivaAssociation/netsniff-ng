@@ -1,16 +1,19 @@
 %define name	netsniff-ng
-%define version 0.5.5.0
+%define version 0.5.6
 %define release %mkrel 1
 
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Summary:	A high performance network sniffer for packet inspection
-License:	GPL
+License:	GPLv2
 Group:		Monitoring
 URL:		http://netsniff-ng.org/
-Source:     http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
+BuildRequires:	ncurses-devel
+BuildRequires:	GeoIP-devel
+BuildRequires:	pkgconfig(libnetfilter_conntrack)
+BuildRequires:	flex
 
 %description
 netsniff-ng is a high performance linux network sniffer for packet inspection.
@@ -23,29 +26,24 @@ throughput or creating network statistics of incoming packets on central
 network nodes like routers or firewalls. 
 
 %prep
-%setup -q -n %{name}
-cd src
-make clean
+%setup -q
 
 %build
-cd src
-%make CFLAGS="%{optflags}"
+pushd src
+%cmake
+%make
+popd
 
 %install
-rm -rf %{buildroot}
-install -d -m  755 %{buildroot}%{_sbindir}
-install -m 755 src/netsniff-ng %{buildroot}%{_sbindir}
-install -d -m  755 %{buildroot}%{_mandir}/man8
-install -m 644 netsniff-ng.8 %{buildroot}%{_mandir}/man8
-install -d -m  755 %{buildroot}%{_sysconfdir}/netsniff-ng/rules
-install -m 644 src/rules/* %{buildroot}%{_sysconfdir}/netsniff-ng/rules
+pushd src/build
+%makeinstall_std
+popd
 
-%clean
-rm -rf %{buildroot}
+rm -f %{buildroot}%{_mandir}/man8/netsniff-ng.8.gz
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS CHANGELOG CODING COPYING CREDITS HACKING README TODO VERSION
-%{_sbindir}/%{name}
-%{_mandir}/man8/netsniff-ng.8*
-%config(noreplace) %{_sysconfdir}/netsniff-ng/rules
+%doc AUTHORS PROJECTS README REPORTING-BUGS THANKS VERSION Documentation/*
+%{_sbindir}/*
+%{_mandir}/man8/*.8*
+%config(noreplace) %{_sysconfdir}/netsniff-ng/*
