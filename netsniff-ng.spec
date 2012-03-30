@@ -10,6 +10,7 @@ License:	GPLv2
 Group:		Monitoring
 URL:		http://netsniff-ng.org/
 Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
+BuildRequires:	cmake
 BuildRequires:	ncurses-devel
 BuildRequires:	GeoIP-devel
 BuildRequires:	pkgconfig(libnetfilter_conntrack)
