@@ -1,6 +1,6 @@
 %define name	netsniff-ng
 %define version 0.5.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -15,6 +15,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	GeoIP-devel
 BuildRequires:	pkgconfig(libnetfilter_conntrack)
 BuildRequires:	flex
+BuildRequires:	pkgconfig(liburcu)
 
 %description
 netsniff-ng is a high performance linux network sniffer for packet inspection.
