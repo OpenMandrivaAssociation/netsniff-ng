@@ -1,6 +1,6 @@
 %define name	netsniff-ng
-%define version 0.5.6
-%define release %mkrel 2
+%define version 0.5.7
+%define release 1
 
 Name:		%{name}
 Version:	%{version}
@@ -15,6 +15,8 @@ BuildRequires:	ncurses-devel
 BuildRequires:	GeoIP-devel
 BuildRequires:	pkgconfig(libnetfilter_conntrack)
 BuildRequires:	flex
+BuildRequires:	cli-devel
+BuildRequires:	nacl
 BuildRequires:	pkgconfig(liburcu)
 
 %description
