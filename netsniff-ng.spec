@@ -1,10 +1,6 @@
-%define name	netsniff-ng
-%define version 0.5.6
-%define release %mkrel 2
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		netsniff-ng
+Version:	0.5.7
+Release:	1
 Summary:	A high performance network sniffer for packet inspection
 License:	GPLv2
 Group:		Monitoring
@@ -12,7 +8,7 @@ URL:		http://netsniff-ng.org/
 Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
 BuildRequires:	cmake
 BuildRequires:	ncurses-devel
-BuildRequires:	GeoIP-devel
+BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(libnetfilter_conntrack)
 BuildRequires:	flex
 BuildRequires:	pkgconfig(liburcu)
@@ -45,7 +41,7 @@ rm -f %{buildroot}%{_mandir}/man8/netsniff-ng.8.gz
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS PROJECTS README REPORTING-BUGS THANKS VERSION Documentation/*
+%doc AUTHORS README REPORTING-BUGS VERSION Documentation/*
 %{_sbindir}/*
 %{_mandir}/man8/*.8*
 %config(noreplace) %{_sysconfdir}/netsniff-ng/*
