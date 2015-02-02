@@ -1,17 +1,20 @@
 Name:		netsniff-ng
-Version:	0.5.7
+Version:	0.5.8
 Release:	1
 Summary:	A high performance network sniffer for packet inspection
 License:	GPLv2
-Group:		Monitoring
+Group:		Networking/Other
 URL:		http://netsniff-ng.org/
-Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
-BuildRequires:	cmake
-BuildRequires:	ncurses-devel
-BuildRequires:	pkgconfig(geoip)
-BuildRequires:	pkgconfig(libnetfilter_conntrack)
-BuildRequires:	flex
-BuildRequires:	pkgconfig(liburcu)
+Source:		http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
+BuildRequires:  cmake
+BuildRequires:  ncurses-devel
+BuildRequires:  libnl3-devel
+BuildRequires:  libz-devel
+BuildRequires:	pcap-devel
+BuildRequires:  flex
+BuildRequires:  bison
+BuildRequires:  geoip-devel
+BuildRequires:  netfilter_conntrack-devel
 
 %description
 netsniff-ng is a high performance linux network sniffer for packet inspection.
@@ -24,62 +27,25 @@ throughput or creating network statistics of incoming packets on central
 network nodes like routers or firewalls. 
 
 %prep
-%setup -q
+%setup -q 
 
 %build
-pushd src
-%cmake
-%make
-popd
+%setup_compile_flags
+./configure
+%make PREFIX=%{_prefix} CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" DISTRO=1 ETCDIR=%{_sysconfdir}
 
 %install
-pushd src/build
-%makeinstall_std
-popd
-
-rm -f %{buildroot}%{_mandir}/man8/netsniff-ng.8.gz
+%makeinstall_std PREFIX=%{_prefix} ETCDIR=%{_sysconfdir}
 
 %files
-%defattr(-,root,root)
-%doc AUTHORS README REPORTING-BUGS VERSION Documentation/*
-%{_sbindir}/*
+%doc AUTHORS COPYING README REPORTING-BUGS
+%{_sbindir}/netsniff-ng
+%{_sbindir}/bpfc
+%{_sbindir}/ifpps
+%{_sbindir}/astraceroute
+%{_sbindir}/trafgen
 %{_mandir}/man8/*.8*
+%dir %{_sysconfdir}/netsniff-ng
 %config(noreplace) %{_sysconfdir}/netsniff-ng/*
 
 
-%changelog
-* Wed Apr 04 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.5.6-2mdv2012.0
-+ Revision: 789132
-- build with urcu
-
-* Fri Mar 30 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.5.6-1
-+ Revision: 788403
-- update to 0.5.6
-
-* Sun Oct 10 2010 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.5.0-1mdv2011.0
-+ Revision: 584851
-- new version
-
-* Fri Feb 19 2010 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.4.2-1mdv2010.1
-+ Revision: 507997
-- update to new version 0.5.4.2
-
-* Sun Jan 03 2010 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.4.1-1mdv2010.1
-+ Revision: 485973
-- new version
-
-* Thu Dec 31 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.4-1mdv2010.1
-+ Revision: 484525
-- new version
-
-* Tue Dec 08 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.3-2mdv2010.1
-+ Revision: 474936
-- add missing man pages and filter rules, as per author suggestion :)
-
-* Mon Dec 07 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.3-1mdv2010.1
-+ Revision: 474582
-- import netsniff-ng
-
-
-* Mon Dec 07 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.5.3-1mdv2010.1
-- first mdv release
