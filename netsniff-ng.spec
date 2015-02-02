@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:		netsniff-ng
 Version:	0.5.8
 Release:	1
@@ -5,7 +7,8 @@ Summary:	A high performance network sniffer for packet inspection
 License:	GPLv2
 Group:		Networking/Other
 URL:		http://netsniff-ng.org/
-Source:		http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
+Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
+Source100:	%{name}.rpmlintrc
 BuildRequires:  cmake
 BuildRequires:  ncurses-devel
 BuildRequires:  libnl3-devel
