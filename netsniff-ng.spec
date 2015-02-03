@@ -11,8 +11,8 @@ Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 BuildRequires:  cmake
 BuildRequires:  ncurses-devel
-BuildRequires:  libnl3-devel
-BuildRequires:  libz-devel
+BuildRequires:  pkgconfig(libnl-3.0)
+BuildRequires:  pkgconfig(zlib)
 BuildRequires:	pcap-devel
 BuildRequires:  flex
 BuildRequires:  bison
