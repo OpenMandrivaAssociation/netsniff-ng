@@ -2,7 +2,7 @@
 
 Name:		netsniff-ng
 Version:	0.5.8
-Release:	1
+Release:	2
 Summary:	A high performance network sniffer for packet inspection
 License:	GPLv2
 Group:		Networking/Other
