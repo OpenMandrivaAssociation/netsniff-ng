@@ -1,4 +1,2 @@
-removed_sources:
-  netsniff-ng-0.5.7.tar.gz: 9a44a0310a47f2a536d249e6ac4dd5e46a03a567
 sources:
-  netsniff-ng-0.5.8.tar.gz: d2ff38807645b2aeaae01bd55e04cf248312cae2
+  netsniff-ng-0.6.6.tar.gz: 956f3b3a5f871330819f96abfeede7923d8c557c

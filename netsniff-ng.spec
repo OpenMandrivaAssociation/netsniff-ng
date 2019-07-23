@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:		netsniff-ng
-Version:	0.5.8
-Release:	2
+Version:	0.6.6
+Release:	1
 Summary:	A high performance network sniffer for packet inspection
 License:	GPLv2
 Group:		Networking/Other
