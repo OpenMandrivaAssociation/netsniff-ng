@@ -6,7 +6,7 @@ Release:	1
 Summary:	A high performance network sniffer for packet inspection
 License:	GPLv2
 Group:		Networking/Other
-URL:		http://netsniff-ng.org/
+URL:		https://netsniff-ng.org/
 Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 BuildRequires:  cmake
