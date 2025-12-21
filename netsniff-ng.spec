@@ -9,6 +9,10 @@ Group:		Networking/Other
 URL:		https://netsniff-ng.org/
 Source0:	http://www.netsniff-ng.org/pub/netsniff-ng/%{name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:  cmake
 BuildRequires:  ncurses-devel
 BuildRequires:  pkgconfig(libnl-3.0)
